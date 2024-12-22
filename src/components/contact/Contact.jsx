@@ -4,6 +4,8 @@ import './_contact.scss';
 import emailjs from '@emailjs/browser';
 import Alert from "../alert/Alert";
 
+
+
 const Contact = () => {
 
     // Var d'état stockage input formulaire nom user
@@ -16,20 +18,27 @@ const Contact = () => {
     // Fonction envoimail viaEmail.js
     const sendEmail = (e) => {
         e.preventDefault();
-
-        emailjs.sendForm('service_fyxd0aq', 'template_k377uap', form.current, '-mdfyJh5FHwMPjywl')
-            .then((result) => {
+    
+        emailjs.sendForm(
+            'service_ugapd72',     // Remplacez par votre Service ID
+            'template_ctumlyg',    // Remplacez par votre Template ID
+            form.current,
+            'jazdjC859PnG_THFw'    // Remplacez par votre clé publique EmailJS
+        ).then(
+            (result) => {
                 console.log(result.text);
-                // reinitialisation champs formulaire
+                // Réinitialisation des champs du formulaire
                 form.current.reset();
-                // state pr fenetre de confirmation dédié au user 
+                // Affichage de la confirmation
                 setConfirmation(true);
-            }
-            ,(error) => {
+            },
+            (error) => {
                 console.log(error.text);
+                alert('Erreur lors de l\'envoi du message.');
             }
         );
     };
+    
 
     
 
