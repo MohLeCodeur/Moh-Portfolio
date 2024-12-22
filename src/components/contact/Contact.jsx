@@ -85,7 +85,7 @@ const Contact = () => {
                         <div className="contact-box">
                             <div className="contact-detail-item">
                                 <i className="fa-regular fa-envelope"></i>
-                                <a href="mailto:contact@benjamin-leveque.com">contact@mohlecodeur.com</a>
+                                <a href="mailto:contact@mohlecodeur.com">contact@mohlecodeur.com</a>
                             </div>
                             <div className="contact-detail-item">
                                 <i className="fa-solid fa-phone-flip"></i>
