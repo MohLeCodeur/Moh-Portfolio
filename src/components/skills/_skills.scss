@@ -1,0 +1,98 @@
+@import '../../scss/variables.scss';
+
+#skills{
+    padding: 2rem;
+    
+    .skills-title{
+        text-align: center;
+    }
+    .skills-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        padding: 5vh 0;
+    
+        .skill-box{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            min-width: 30%;
+            .box{
+                padding: 0 1rem 0 2rem;
+                h3{
+                    text-align: center;
+                    margin: 1.5rem 0 0 0 
+                }
+                p{
+                    margin-bottom: 0;
+                }
+                .skill-item{
+                    .skill-bar{
+                        width: 100%;
+                        height: .5em;
+                        background-color: $darkBlue;
+                        .skill-bar-fullfilled {
+                        height: .5em;
+                        background-color: $lightBlue;
+                        }
+                    }
+                }
+            }
+        }
+        .cv-download{
+            text-align: center;
+            margin-top: 5vh;
+            display: flex;
+            flex-direction: column;
+
+            .cv-download-img{
+                border-radius:10px;
+                height: auto;
+                max-width: 100%;
+            }
+            button{
+                width: fit-content;
+                margin: 4vh auto 0;
+            }
+            a{
+                color: $lightBlue
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $lg-screen) {
+    #skills{
+        .skills-container{
+            justify-content: space-evenly;
+            flex-wrap: nowrap;
+            .skill-box{
+                min-width: 20%;
+            }
+            .cv-download{
+                justify-content: center;
+                align-items: center;
+                .cv-download-img{
+                    width: 80%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $md-screen) {
+    #skills{
+        .skills-container{
+            flex-wrap: wrap;
+            .skill-box{
+                min-width: 80%;
+            }
+            .cv-download{
+                .cv-download-img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

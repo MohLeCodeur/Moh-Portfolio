@@ -1,0 +1,155 @@
+@import '../../scss/variables.scss';
+
+#contact{
+    margin: 10rem 0rem;
+    .title, p{
+        text-align: center;
+    }
+    .contact-description{
+        width: 70%;
+        margin: 0 auto;
+        padding-bottom: 2rem;
+    }
+    .form-box{
+        max-width: 850px;
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+        margin: 0 auto;
+        background-color: $darkBlue;
+        border-radius: 15px;
+        flex-wrap: wrap;
+        .form-content{
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            .form-content-detail{
+                position: relative;
+                margin: 1rem 0;
+                label{
+                    padding: 0 .2rem;
+                    margin: 0;
+                    position: absolute;
+                    top: 5px;
+                    left: 12px;
+                    background-color: $darkBlue;
+                    color: $lightBlue;
+                    transition: top .3s ease-in;
+                }
+                input, textarea{
+                    background-color: $darkBlue;
+                    border: 2px solid $lightBlue;
+                    border-radius: 10px;
+                    color: $snowWhite;
+                    font-family: $Poppins;
+                    font-size: 1rem;
+                    padding: 0 .3rem;
+                    outline: none;
+                    transition: border .3s ease-in;
+                    &:hover{
+                        border: 2px solid $snowWhite;
+                    }
+                    &:focus ~ label, &:not(:placeholder-shown):not(:focus) ~ label {
+                        top: -15px;
+                    }
+                    &:-webkit-autofill { 
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: $snowWhite;
+                    }
+                }
+                
+                input{
+                    appearance: none;
+                    height: 55px;
+                    width: 200px;
+
+                    &#mail-box{
+                        width: 350px;
+                    }
+                    
+                    
+                    // &:-internal-autofill-selected {
+                    //     background-color: transparent !important;
+                    //     background-image: none !important;
+                    //     color: inherit !important;
+                    // }
+
+                    
+                }
+                textarea{
+                    height: 150px;
+                    width: 350px;
+                    resize: none;
+                    padding-top: 40px;
+                }
+            }
+            
+            .submit-form-btn{
+                width: 150px;
+                margin: 1rem auto;
+            }
+        }
+        .form-content-right{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            .contact-box{
+                .contact-detail-item{
+                    padding: 1.5rem 0;
+                    .contact-icon-container{
+                        display:flex;                        
+                    }
+                    i{
+                        padding: 0 .4rem;
+                    }
+                    a{
+                        color: $snowWhite;
+                        &:hover{
+                        color: $lightBlue;
+                        }
+                    }
+                    .icon-outline{
+                        width: 70px;
+                        height: 70px;
+                        border-radius: 8px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $darkBlue;
+                        margin: 0 auto;
+                        transition: all .3s ease-in;
+                        cursor: pointer;
+                        .__social-icon{
+                            font-size: 3.5rem;
+                            color: $snowWhite;
+                        }
+                        &:hover{
+                            background-color: $lightBlue;
+                            .__social-icon{
+                                color: $darkBlue
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $md-screen) {
+    .form-box{
+        width: 90%;
+        justify-content: center;
+        .form-content{
+            align-items: center;
+        }
+        .form-content-right{
+            .contact-detail-item:first-child{
+                margin-top: 2rem;
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,54 @@
+@import './variables.scss';
+@import './fonts.scss';
+@import './buttons.scss';
+
+*{
+  scroll-behavior: smooth;
+  body {
+    min-width: 275px;
+    margin: 0;
+    padding:0;
+    background-color: black;
+    color: $snowWhite;
+    font-family: $Poppins;
+    ::selection{
+      background-color: $lightBlueTransparent;
+    }
+    a {
+      text-decoration: none;
+      color: $snowWhite;
+      
+    }
+    h2 {
+      font-size: 2rem;
+      color: $lightBlue;
+      font-family: $SilkScreen;
+      margin: 4rem 0;
+    }
+  }
+}
+
+// Style de la barre de scroll
+body::-webkit-scrollbar {
+  width:10px;            
+}
+  
+body::-webkit-scrollbar-track {
+  background: black;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: $lightBlue;
+  border-radius: 6px;       
+  border: 1px solid black;  
+}
+
+@media screen and (max-width: $sm-screen) {
+  body{
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+  

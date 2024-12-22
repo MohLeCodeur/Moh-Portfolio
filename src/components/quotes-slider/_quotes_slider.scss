@@ -1,0 +1,74 @@
+@import '../../scss/variables.scss';
+
+
+#carousel {
+    background-image: url(../../img/pexels-manuel-geissinger-325229.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-attachment: fixed;
+    
+    .carousel-root {
+        width: 100%;
+        height: 30vh;
+        .carousel-slider {
+            display: flex;
+            height: 100%;
+            .control-arrow,
+            .control-dots {
+                    z-index: 1;
+                }
+
+            
+            button {
+                padding: 0 2rem;
+            }
+            
+            .quote-item {
+                background-color: rgba(0, 0, 0, 0.33);
+                margin: 0 auto;
+                width: 60%;
+                padding: 1rem;
+                p.quote {
+                    font-style: italic;
+                    color: $snowWhite;
+                    font-size: 1.2rem;
+                    margin-bottom: 1rem;
+                }
+                
+                p.author {
+                    color: $snowWhite;
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $sm-screen) {
+    #carousel{
+        .carousel-root {
+            .carousel-slider {
+                // .control-arrow,
+                // .control-dots {
+                //     z-index: 0;
+                // }
+
+                .quote-item {
+                    width: 70%;
+                        p.quote {
+                            font-size: 0.8rem;
+                            margin-bottom: .5rem;
+                        }
+                        p.author {
+                            font-size: 1rem;
+                        }
+                }
+            }
+        }
+    }
+}
