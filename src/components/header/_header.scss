@@ -188,4 +188,50 @@
         transition: all 1.4s ease-in-out;
     }
     
+
+}
+@media screen and (max-width: 320px) {
+    .navbar_header {
+        padding: 0.5em 0;
+        
+        .logo-container {
+            .navbar_logo {
+                width: 12vh; // Réduit la taille du logo
+            }
+        }
+
+        .navbar_links {
+            padding: 1.5rem;
+            
+            .navbar_item {
+                padding: 0.8rem; // Réduit l'espace entre les liens
+                font-size: 4vw; // Ajuste la taille de la police
+            }
+        }
+
+        .navbar_burger {
+            top: 0.8rem;
+            right: 1rem;
+
+            .burger_bar,
+            .burger_bar::before,
+            .burger_bar::after {
+                width: 25px; // Réduit la largeur des barres
+            }
+
+            .burger_bar::before {
+                transform: translateY(-8px); // Ajuste la position
+            }
+
+            .burger_bar::after {
+                transform: translateY(8px); // Ajuste la position
+            }
+        }
+    }
+
+    .show_nav .navbar_links {
+        .navbar_item {
+            font-size: 5vw; // Augmente légèrement pour rester lisible
+        }
+    }
 }
