@@ -4,13 +4,13 @@ import './_portfolio.scss';
 import Popup from '../popup/Popup';
 
 
-import portfolioProjet1 from '../../img/portfolio-projet1-findyourwave.png';
-import portfolioProjet2 from '../../img/portfolio-projet2-portfolio-web-developper.png';
-import thumbProjet1 from '../../img/thumb-portfolio-projet1-findyourwave.png';
-import thumbProjet2 from '../../img/thumb-portfolio-projet2-portfolio-dev-web.png'
-import portfolioProjet3 from '../../img/portfolio-projet3-Markdown-previewer.png';
-import portfolioProjet4 from '../../img/portfolio-projet4-Drum-machine.png';
-import portfolioProjet5 from '../../img/portfolio-projet5-Calculator-machine.png';
+import portfolioProjet1 from '../../img/exchange.png';
+import portfolioProjet2 from '../../img/devweb.png';
+import thumbProjet1 from '../../img/exchange.png';
+import thumbProjet2 from '../../img/devweb.png'
+import portfolioProjet3 from '../../img/etudiant.png';
+import portfolioProjet4 from '../../img/music.png';
+// import portfolioProjet5 from '../../img/portfolio-projet5-Calculator-machine.png';
 
 
 class Portfolio extends Component {
@@ -22,15 +22,16 @@ class Portfolio extends Component {
             popups: [
                 {
                     id: 1,
-                    trigger: false,                 
-                    title: 'Find Your Wave | application SPA',
-                    thumbInsight: "Projet de formation",
-                    content: "Application pour surfers et bodyboarders. Aprés création du profil, permet de consulter les prévisions météos et marées partout dans le monde et les enregistrer. Archivage des sessions de surf et infos associées.",
+                    trigger: false,
+                    title: 'Echange Crypto | Conversion',
+                    thumbInsight: "Projet de refonte de sites web existants", // Précision ajoutée
+                    content: "Application d'échange de crypto-monnaies permettant aux utilisateurs d'acheter, de vendre et de gérer leurs actifs numériques.", 
+                    url: "https://exchangeff.netlify.app/",
                     imageProjet: portfolioProjet1,
                     thumbProjet: thumbProjet1,
-                    content2:"Single Page Application développée dans le cadre de mon projet de formation, que je continue à développer en autonomie. Données utilisateurs enregistrées et sécurisées en base de données mySQL, Serveur API Express/NodeJS avec architecture REST et gestion du CRUD, avec entre autres un panel Admin. ",
-                    skillsFront: ["React.JS", "JavaScript", "HTML", "CSS/SCSS"],
-                    skillsBack: ["Node.JS", "Express", "MySQL", "API externes"],
+                    content2:"Single Page Application développée dans le cadre de mon projet de formation, que je continue à développer en autonomie. ", // Contenu modifié et précisé
+                    skillsFront: ["React.JS", "JavaScript", "HTML", "CSS/SCSS", "Bibliothèque de graphiques (ex: Chart.js, Recharts)"], // Ajout d'une bibliothèque de graphiques
+                    skillsBack: ["Node.JS", "Express", "Base de données (ex: PostgreSQL, MongoDB)", "API externes (ex: CoinGecko, Binance API)", "Sécurité (ex: JWT, OAuth)"], // Précisions et ajouts importants
                 },
                 {
                     id: 2,
@@ -47,42 +48,30 @@ class Portfolio extends Component {
                 {
                     id: 3,
                     trigger: false,
-                    title: 'Front-End | Markdown Previewer',
-                    thumbInsight: "Site pour traduction Markdown",
-                    content: 'Application développée pour certification FreeCodeCamp, accessible en ligne via le bouton ci-dessous :',
-                    url: "https://benbishop40.github.io/markdown-previewer/",
+                    title: 'Gestion des Étudiants',
+                    thumbInsight: "Application web : Gestion des étudiants",
+                    content: "Application complète pour la gestion des informations des étudiants (inscriptions, notes, absences, etc.).",
+                    url: "https://etudiant.mohlecodeur.com/",
                     imageProjet: portfolioProjet3,
                     thumbProjet: portfolioProjet3,
-                    content2:"Single Page Application développée avec React.JS, traduction Markdown avec librairie Marked.",
-                    skillsFront: ["React.JS", "JavaScript", "HTML", "CSS/SCSS"],
-                    skillsBack: [],
-                },
+                    content2:"Application full-stack développée avec React.JS pour l'interface utilisateur et Laravel pour l'API et la gestion de la base de données. Gère les CRUD (Créer, Lire, Mettre à jour, Supprimer) pour les étudiants, les cours et les enseignants. Inclut un système d'authentification et d'autorisation.", // Plus concis et précis
+    skillsFront: ["React.JS", "JavaScript", "HTML", "CSS/SCSS"],
+    skillsBack: ["Laravel", "PHP", "MySQL ", "API REST"], // Ajout des technologies backend
+},
                 {
                     id: 4,
-                    trigger: false,
-                    title: 'Front-End | Drum Machine',
-                    thumbInsight: "Application machine à samples",
-                    content: "Application développée pour certification FreeCodeCamp, permettant de jouer avec une boîte à sample et 2 librairies de sons pré-enregistrés. Elle est accessible en ligne via le bouton ci-dessous :",
-                    url: "https://benbishop40.github.io/drum-machine/",
-                    imageProjet: portfolioProjet4,
-                    thumbProjet: portfolioProjet4,
-                    content2:"Single Page Application développée sous Framework React.JS.",
-                    skillsFront: ["React.JS", "JavaScript", "HTML", "CSS/SCSS"],
-                    skillsBack: [],
+    trigger: false,
+    title: 'Lecteur de Musique Personnalisé',
+    thumbInsight: "Application lecteur de musique",
+    content: "Application web permettant de lire des fichiers audio, de créer et gérer des playlists, et d'afficher des visualisations audio.", // Contenu plus descriptif
+    url: "https://music-beatiful-player.vercel.app/",
+    imageProjet: portfolioProjet4,
+    thumbProjet: portfolioProjet4,
+    content2:"Single Page Application développée avec React.JS. Utilise l'API Web Audio pour la lecture et le traitement audio. Intègre la gestion de playlists et potentiellement des visualisations audio dynamiques.", // Détails techniques ajoutés
+    skillsFront: ["React.JS", "JavaScript", "HTML", "CSS/SCSS", "API Web Audio"], // Ajout de l'API Web Audio
+    skillsBack: [],
                 },
-                {
-                    id: 5,
-                    trigger: false,
-                    title: 'Front-End | Calculator',
-                    thumbInsight: "Application calculatrice",
-                    content: "Application développée pour certification FreeCodeCamp, permettant de réaliser des calculs simples. Elle est accessible en ligne via le bouton ci-dessous :",
-                    url: "https://benbishop40.github.io/javascript-calculator/",
-                    imageProjet: portfolioProjet5,
-                    thumbProjet: portfolioProjet5,
-                    content2:"Single Page Application développée sous Framework React.JS, librairie MathJS.",
-                    skillsFront: ["React.JS", "JavaScript", "HTML", "CSS/SCSS"],
-                    skillsBack: [],
-                },
+                
             ]
         };
 

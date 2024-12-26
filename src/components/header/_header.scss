@@ -64,7 +64,7 @@
     }
     .navbar_burger{
         width: 30px;
-        height: 30px;
+        height: 80px;
         background: transparent;
         border: none;
         color: inherit;
@@ -82,6 +82,7 @@
     .navbar_header>.logo-container{
         margin: 0;
         padding: 0 3vw;
+       
     }
     .navbar_links{
         flex-direction: column;
