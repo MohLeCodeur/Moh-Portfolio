@@ -9,7 +9,7 @@ class Footer extends Component {
 
         return (
             <section className='footer'>
-                <p id='copyright'>&#169; Copyright 2023 | Mohamed Coulibaly | Tous droits réservés</p>
+                <p id='copyright'>&#169; Copyright 2024 | Mohamed Coulibaly | Tous droits réservés</p>
                 {/* <ul id='footer-links'>
                     <li className='footer-link'><Link to={"/LegalNotice"}>Mentions légales</Link></li>
                     <li className='footer-link'>Plan du site</li>

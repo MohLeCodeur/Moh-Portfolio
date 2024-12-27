@@ -133,6 +133,12 @@ const Skills = () => {
                                 <div className="skill-bar-fullfilled bootstrap_skill"></div>
                             </div>
                         </div>
+                        <div className="skill-item">
+                            <p>Flutter/ReactNative</p>
+                            <div className="skill-bar">
+                                <div className="skill-bar-fullfilled bootstrap_skill"></div>
+                            </div>
+                        </div>
 
                     </div>
                     <div className="box">
@@ -157,6 +163,12 @@ const Skills = () => {
                         </div>
                         <div className="skill-item">
                             <p>Node js</p>
+                            <div className="skill-bar">
+                                <div className="skill-bar-fullfilled bootstrap_skill"></div>
+                            </div>
+                        </div>
+                        <div className="skill-item">
+                            <p>Spring Boot</p>
                             <div className="skill-bar">
                                 <div className="skill-bar-fullfilled bootstrap_skill"></div>
                             </div>
