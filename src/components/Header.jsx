@@ -35,20 +35,17 @@ const Header = () => {
   ]
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+    <>
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-darker/98 shadow-2xl' : 'bg-darker/95'
       } backdrop-blur-xl border-b border-white/10 py-2`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <motion.a
+        <a
           href="#accueil"
-          whileHover={{ scale: 1.05 }}
-          className="flex items-center -my-2 z-50"
+          className="flex items-center -my-2 z-50 hover:opacity-90 transition-opacity"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           <img 
@@ -56,95 +53,111 @@ const Header = () => {
             alt="MohAgency Logo" 
             className="h-16 md:h-24 w-auto object-contain"
           />
-        </motion.a>
+        </a>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-8">
           {menuItems.map((item, index) => (
-            <motion.a
+            <a
               key={index}
               href={item.href}
-              whileHover={{ scale: 1.1, y: -2 }}
               className="font-medium text-white hover:text-gradient-static transition-all relative group"
             >
               {item.name}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300"></span>
-            </motion.a>
+            </a>
           ))}
         </nav>
 
         {/* CTA Button */}
-        <motion.a
+        <a
           href="#contact"
-          whileHover={{ scale: 1.08, y: -2 }}
-          whileTap={{ scale: 0.95 }}
-          className="hidden md:block btn-primary"
+          className="hidden md:block btn-primary hover:scale-105 transition-transform"
         >
           🚀 Démarrer maintenant
-        </motion.a>
+        </a>
 
         {/* Mobile Menu Button */}
-        <motion.button
+        <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          whileTap={{ scale: 0.9 }}
-          className="md:hidden text-white glass p-3 rounded-xl z-50 relative hover:bg-primary/20 transition-colors"
+          className="md:hidden text-white glass p-3 rounded-xl z-[60] relative hover:bg-primary/20 transition-all active:scale-90"
+          aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </motion.button>
+        </button>
       </div>
+    </header>
 
-      {/* Mobile Menu - Full Screen Overlay */}
+      {/* Mobile Menu - Slide from Right */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="md:hidden fixed inset-0 bg-gradient-to-br from-darker via-dark to-darker z-40 flex items-center justify-center"
-          >
-            {/* Animated Background */}
-            <div className="absolute inset-0 mesh-bg opacity-30"></div>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[55]"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
             
-            <nav className="relative z-10 flex flex-col items-center justify-center space-y-6 px-8 w-full">
-              {menuItems.map((item, index) => (
-                <motion.a
-                  key={index}
-                  href={item.href}
+            {/* Menu Panel */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}
+              className="md:hidden fixed top-0 right-0 bottom-0 w-[280px] bg-darker border-l border-white/10 z-[60] shadow-2xl"
+            >
+              {/* Header with Close Button */}
+              <div className="flex items-center justify-between p-6 border-b border-white/10">
+                <span className="text-white font-bold text-lg">Menu</span>
+                <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.1, x: 10 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="text-white text-2xl font-bold hover:text-gradient transition-all relative group w-full text-center py-3"
+                  className="text-white hover:bg-white/10 p-2 rounded-lg transition-colors"
+                  aria-label="Close menu"
                 >
-                  <span className="relative z-10">{item.name}</span>
-                  <motion.div
-                    className="absolute inset-0 bg-white/5 rounded-xl -z-10"
-                    initial={{ scale: 0 }}
-                    whileHover={{ scale: 1 }}
-                    transition={{ duration: 0.2 }}
-                  />
-                </motion.a>
-              ))}
-              <motion.a
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: menuItems.length * 0.1 }}
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary text-center text-lg px-8 py-4 mt-4 w-full max-w-xs"
-              >
-                🚀 Démarrer maintenant
-              </motion.a>
-            </nav>
-          </motion.div>
+                  <X size={24} />
+                </button>
+              </div>
+              
+              {/* Navigation Links */}
+              <nav className="flex flex-col p-4 space-y-2">
+                {menuItems.map((item, index) => (
+                  <a
+                    key={index}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-white text-base font-medium py-3 px-4 rounded-lg hover:bg-white/5 active:bg-white/10 transition-all border-l-2 border-transparent hover:border-primary"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+                
+                {/* CTA Button */}
+                <div className="pt-4">
+                  <a
+                    href="#contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="btn-primary text-center text-sm px-6 py-3 w-full block"
+                  >
+                    🚀 Démarrer
+                  </a>
+                </div>
+              </nav>
+              
+              {/* Footer - Social Links (optional) */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-white/10">
+                <p className="text-gray-400 text-xs text-center">
+                  © 2025 MohAgency
+                </p>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   )
 }
 
