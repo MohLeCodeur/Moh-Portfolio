@@ -4,7 +4,7 @@ import { X, ExternalLink } from 'lucide-react'
 
 const Portfolio = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
   const [selectedProject, setSelectedProject] = useState(null)
 
   // Bloquer le scroll quand la modal est ouverte
@@ -82,44 +82,17 @@ const Portfolio = () => {
     }
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.5 }
-    }
-  }
+  // Animations simplifiées
 
   return (
     <section id="realisations" ref={ref} className="py-20 bg-dark relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 mesh-bg opacity-20"></div>
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.2 }}
-            className="inline-block bg-primary/10 border-2 border-primary/30 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider text-white"
-          >
+        <div className={`text-center mb-16 transition-opacity duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
+          <span className="inline-block bg-primary/10 border-2 border-primary/30 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider text-white">
             🎨 Nos Réalisations
-          </motion.span>
+          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-6 font-heading">
             Des projets qui{' '}
             <span className="text-gradient">inspirent</span>
@@ -127,20 +100,14 @@ const Portfolio = () => {
           <p className="text-base md:text-lg text-gray-300 mt-6 max-w-3xl mx-auto">
             Découvrez quelques-uns de nos projets récents et laissez-vous inspirer
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {projects.map((project) => (
-            <motion.div
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <div
               key={project.id}
-              variants={itemVariants}
-              whileHover={{ y: -10 }}
-              className="group cursor-pointer"
+              className={`group cursor-pointer transition-all duration-500 hover:-translate-y-3 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: `${index * 80}ms` }}
               onClick={() => setSelectedProject(project)}
             >
               <div className="relative overflow-hidden rounded-2xl shadow-lg">
@@ -155,13 +122,9 @@ const Portfolio = () => {
                   
                   {/* Overlay Content */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileHover={{ scale: 1 }}
-                      className="bg-white rounded-full p-4"
-                    >
+                    <div className="bg-white rounded-full p-4 scale-0 group-hover:scale-100 transition-transform duration-300">
                       <ExternalLink className="text-primary" size={24} />
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
 
@@ -188,9 +151,9 @@ const Portfolio = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Lightbox Modal */}
         <AnimatePresence>

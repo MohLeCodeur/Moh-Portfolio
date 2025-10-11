@@ -4,7 +4,7 @@ import { Star, Quote } from 'lucide-react'
 
 const Testimonials = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   const testimonials = [
     {
@@ -33,44 +33,17 @@ const Testimonials = () => {
     }
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  }
+  // Animations simplifiées
 
   return (
     <section ref={ref} className="py-20 bg-darker relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 mesh-bg opacity-20"></div>
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.2 }}
-            className="inline-block bg-primary/10 border-2 border-primary/30 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider text-white"
-          >
+        <div className={`text-center mb-16 transition-opacity duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
+          <span className="inline-block bg-primary/10 border-2 border-primary/30 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider text-white">
             💬 Témoignages
-          </motion.span>
+          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-6 font-heading">
             Ce que disent nos{' '}
             <span className="text-gradient">clients</span>
@@ -78,20 +51,14 @@ const Testimonials = () => {
           <p className="text-base md:text-lg text-gray-300 mt-6 max-w-3xl mx-auto">
             La satisfaction de nos clients est notre plus grande fierté
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-3 gap-8"
-        >
-          {testimonials.map((testimonial) => (
-            <motion.div
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <div
               key={testimonial.id}
-              variants={itemVariants}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className="card relative bg-darker/60"
+              className={`card relative bg-darker/60 transition-all duration-500 hover:-translate-y-2 hover:scale-105 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Quote Icon */}
               <div className="absolute top-6 right-6 text-primary opacity-10">
@@ -130,17 +97,12 @@ const Testimonials = () => {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Trust Badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center"
-        >
+        <div className={`mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center transition-all duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
           <div className="text-center">
             <div className="text-4xl font-bold text-primary font-heading">50+</div>
             <p className="text-gray-600 mt-2">Projets réalisés</p>
@@ -157,7 +119,7 @@ const Testimonials = () => {
             <div className="text-4xl font-bold text-primary font-heading">24/7</div>
             <p className="text-gray-600 mt-2">Support client</p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

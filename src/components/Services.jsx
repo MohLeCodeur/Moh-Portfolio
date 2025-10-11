@@ -4,7 +4,7 @@ import { Globe, Bot, Palette, TrendingUp, Code, Zap } from 'lucide-react'
 
 const Services = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   const services = [
     {
@@ -45,42 +45,15 @@ const Services = () => {
     }
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  }
+  // Animations simplifiées
 
   return (
     <section id="services" ref={ref} className="py-20 bg-dark relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.2 }}
-            className="inline-block bg-primary/10 border-2 border-primary/30 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider text-white"
-          >
+        <div className={`text-center mb-16 transition-opacity duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
+          <span className="inline-block bg-primary/10 border-2 border-primary/30 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider text-white">
             ⚡ Nos Services
-          </motion.span>
+          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-6 font-heading">
             Des solutions complètes pour votre{' '}
             <span className="text-gradient">réussite digitale</span>
@@ -88,24 +61,14 @@ const Services = () => {
           <p className="text-base md:text-lg text-gray-300 mt-6 max-w-3xl mx-auto leading-relaxed">
             De la conception à la mise en ligne, nous vous accompagnons à chaque étape de votre projet digital
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              variants={itemVariants}
-              whileHover={{ 
-                scale: 1.03,
-                y: -5,
-                transition: { duration: 0.3 }
-              }}
-              className="card group relative overflow-hidden bg-darker/60"
+              className={`card group relative overflow-hidden bg-darker/60 transition-all duration-500 hover:scale-105 hover:-translate-y-1 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: `${index * 80}ms` }}
             >
               {/* Gradient Background on Hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -132,40 +95,31 @@ const Services = () => {
                   ))}
                 </ul>
 
-                <motion.div
-                  className="pt-4 border-t border-white/10"
-                >
+                <div className="pt-4 border-t border-white/10">
                   <a href="#contact" className="text-primary font-semibold hover:text-secondary transition-colors inline-flex items-center text-sm">
                     En savoir plus
                     <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </a>
-                </motion.div>
+                </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-16 text-center"
-        >
+        <div className={`mt-16 text-center transition-all duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
           <p className="text-lg text-gray-600 mb-6">
             Vous ne trouvez pas ce que vous cherchez ?
           </p>
-          <motion.a
+          <a
             href="#contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn-primary"
+            className="btn-primary hover:scale-105 transition-transform duration-300"
           >
             Parlons de votre projet
-          </motion.a>
-        </motion.div>
+          </a>
+        </div>
       </div>
     </section>
   )

@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle, Linkedin, Youtube, Github } fro
 
 const Contact = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
   const [formData, setFormData] = useState({
     name: '',
     email: '',
