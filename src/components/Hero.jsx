@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles, Zap, Star } from 'lucide-react'
 
 const Hero = () => {
-  const particles = Array.from({ length: 50 })
-  const floatingElements = Array.from({ length: 8 })
+  const particles = Array.from({ length: 15 }) // Réduit de 50 à 15
+  const floatingElements = Array.from({ length: 4 }) // Réduit de 8 à 4
 
   return (
     <section id="accueil" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-darker pt-20">
@@ -49,10 +49,10 @@ const Hero = () => {
               opacity: [Math.random() * 0.5 + 0.2, Math.random() * 0.8 + 0.3, Math.random() * 0.5 + 0.2],
             }}
             transition={{
-              duration: Math.random() * 15 + 10,
+              duration: Math.random() * 20 + 15, // Plus lent = moins de calculs
               repeat: Infinity,
               repeatType: "reverse",
-              ease: "easeInOut"
+              ease: "linear" // Linear est plus performant
             }}
           />
         ))}
@@ -76,7 +76,7 @@ const Hero = () => {
               rotate: [0, 360],
             }}
             transition={{
-              duration: Math.random() * 20 + 15,
+              duration: Math.random() * 25 + 20, // Plus lent
               repeat: Infinity,
               ease: "linear"
             }}

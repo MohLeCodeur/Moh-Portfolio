@@ -50,23 +50,23 @@ const Footer = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Main Footer Content */}
-        <div className="py-16 grid md:grid-cols-2 lg:grid-cols-3 gap-12 items-start">
+        <div className="py-8 grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
           {/* Brand Column */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-6"
+              className="mb-4"
             >
-              <div className="flex items-center space-x-3 mb-4">
+              <div className="flex items-center space-x-3 mb-2">
                 <img 
                   src="/mohagency.png" 
                   alt="MohAgency Logo" 
-                  className="h-20 md:h-24 w-auto object-contain"
+                  className="h-16 md:h-20 w-auto object-contain"
                 />
               </div>
-              <p className="text-gray-400 leading-relaxed mb-6">
+              <p className="text-gray-400 text-sm leading-snug mb-3">
                 Votre partenaire digital pour créer des expériences web exceptionnelles. 
                 Innovation, créativité et performance au service de votre réussite.
               </p>
@@ -79,7 +79,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -3 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 bg-white bg-opacity-10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                    className="w-9 h-9 bg-white bg-opacity-10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
                     title={social.name}
                   >
                     {social.icon}
@@ -96,13 +96,13 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <h3 className="text-lg font-bold mb-4 font-heading">Services</h3>
-            <ul className="space-y-3">
+            <h3 className="text-base font-bold mb-3 font-heading">Services</h3>
+            <ul className="space-y-2">
               {footerLinks.services.map((link, index) => (
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-primary transition-colors inline-block hover:translate-x-1 duration-200"
+                    className="text-gray-400 text-sm hover:text-primary transition-colors inline-block hover:translate-x-1 duration-200"
                   >
                     {link.name}
                   </a>
@@ -118,13 +118,13 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <h3 className="text-lg font-bold mb-4 font-heading">Navigation</h3>
-            <ul className="space-y-3">
+            <h3 className="text-base font-bold mb-3 font-heading">Navigation</h3>
+            <ul className="space-y-2">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-primary transition-colors inline-block hover:translate-x-1 duration-200"
+                    className="text-gray-400 text-sm hover:text-primary transition-colors inline-block hover:translate-x-1 duration-200"
                   >
                     {link.name}
                   </a>
@@ -136,7 +136,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 py-8">
+        <div className="border-t border-gray-800 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm text-center md:text-left">
               © 2025 MohAgency — Tous droits réservés.
