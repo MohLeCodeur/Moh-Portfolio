@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const Header = () => {
@@ -89,27 +88,16 @@ const Header = () => {
     </header>
 
       {/* Mobile Menu - Slide from Right */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[55]"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-            
-            {/* Menu Panel */}
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}
-              className="md:hidden fixed top-0 right-0 bottom-0 w-[280px] bg-darker border-l border-white/10 z-[60] shadow-2xl"
-            >
+      {isMobileMenuOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] animate-fade-in"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+          
+          {/* Menu Panel */}
+          <div className="md:hidden fixed top-0 right-0 bottom-0 w-[280px] bg-darker border-l border-white/10 z-[60] shadow-2xl animate-slide-in-right">
               {/* Header with Close Button */}
               <div className="flex items-center justify-between p-6 border-b border-white/10">
                 <span className="text-white font-bold text-lg">Menu</span>
@@ -153,10 +141,9 @@ const Header = () => {
                   © 2025 MohAgency
                 </p>
               </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+          </div>
+        </>
+      )}
     </>
   )
 }

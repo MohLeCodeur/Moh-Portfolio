@@ -1,11 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { X, ExternalLink } from 'lucide-react'
 
 const Portfolio = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const [isInView, setIsInView] = useState(false)
   const [selectedProject, setSelectedProject] = useState(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+        }
+      },
+      { threshold: 0.2 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
 
   // Bloquer le scroll quand la modal est ouverte
   useEffect(() => {
@@ -117,6 +129,7 @@ const Portfolio = () => {
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-80 transition-opacity duration-300`}></div>
                   
@@ -156,42 +169,30 @@ const Portfolio = () => {
         </div>
 
         {/* Lightbox Modal */}
-        <AnimatePresence>
-          {selectedProject && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/95 backdrop-blur-sm z-[100] flex items-center justify-center p-4 overflow-y-auto"
+        {selectedProject && (
+          <div
+            className="fixed inset-0 bg-black/95 backdrop-blur-sm z-[100] flex items-center justify-center p-4 overflow-y-auto animate-fade-in"
+            onClick={() => setSelectedProject(null)}
+          >
+            {/* Bouton de fermeture en haut à droite */}
+            <button
               onClick={() => setSelectedProject(null)}
+              className="fixed top-6 right-6 z-[110] bg-white hover:bg-gray-100 rounded-full p-3 shadow-2xl transition-all duration-300 hover:scale-110 hover:rotate-90"
             >
-              {/* Bouton de fermeture en haut à droite */}
-              <motion.button
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                onClick={() => setSelectedProject(null)}
-                className="fixed top-6 right-6 z-[110] bg-white hover:bg-gray-100 rounded-full p-3 shadow-2xl transition-all duration-300 hover:scale-110"
-                whileHover={{ rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <X size={28} className="text-dark" />
-              </motion.button>
+              <X size={28} className="text-dark" />
+            </button>
 
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="bg-white rounded-3xl max-w-5xl w-full my-8 overflow-hidden shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-              >
+            <div
+              className="bg-white rounded-3xl max-w-5xl w-full my-8 overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
                 {/* Image */}
                 <div className="relative w-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center min-h-[300px] max-h-[350px] overflow-hidden">
                   <img
                     src={selectedProject.image}
                     alt={selectedProject.title}
                     className="w-auto h-full max-w-full object-contain"
+                    loading="lazy"
                   />
                 </div>
 
@@ -226,31 +227,26 @@ const Portfolio = () => {
                   </div>
                   
                   <div className="flex gap-4">
-                    <motion.a
+                    <a
                       href={selectedProject.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
                       className="btn-primary flex items-center gap-2"
                     >
                       <ExternalLink size={20} />
                       Voir le site
-                    </motion.a>
-                    <motion.button
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
+                    </a>
+                    <button
                       onClick={() => setSelectedProject(null)}
                       className="btn-secondary"
                     >
                       Fermer
-                    </motion.button>
+                    </button>
                   </div>
                 </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )

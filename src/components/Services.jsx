@@ -1,10 +1,22 @@
 import React, { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
 import { Globe, Bot, Palette, TrendingUp, Code, Zap } from 'lucide-react'
 
 const Services = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const [isInView, setIsInView] = React.useState(false)
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+        }
+      },
+      { threshold: 0.2 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
 
   const services = [
     {

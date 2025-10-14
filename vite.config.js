@@ -12,27 +12,39 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true, // Supprime les console.log en production
-        drop_debugger: true
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug']
       }
     },
     rollupOptions: {
       output: {
         manualChunks: {
-          // Sépare les grosses dépendances
-          'framer-motion': ['framer-motion'],
-          'react-vendor': ['react', 'react-dom']
+          // Sépare les dépendances pour un meilleur caching
+          'react-vendor': ['react', 'react-dom'],
+          'icons': ['lucide-react']
         }
       }
     },
     // Optimise la taille des chunks
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 500,
     // Active la compression
     cssCodeSplit: true,
-    sourcemap: false // Désactive les sourcemaps en production
+    sourcemap: false,
+    // Réduction de la taille des assets
+    assetsInlineLimit: 4096,
+    // Optimisation du code
+    target: 'es2015',
+    cssMinify: true
   },
   // Optimise les dépendances
   optimizeDeps: {
-    include: ['react', 'react-dom', 'framer-motion', 'lucide-react']
+    include: ['react', 'react-dom', 'lucide-react'],
+    exclude: []
+  },
+  // Performance
+  esbuild: {
+    logOverride: { 'this-is-undefined-in-esm': 'silent' },
+    drop: ['console', 'debugger']
   }
 })

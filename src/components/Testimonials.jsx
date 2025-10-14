@@ -1,10 +1,22 @@
 import React, { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
 import { Star, Quote } from 'lucide-react'
 
 const Testimonials = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const [isInView, setIsInView] = React.useState(false)
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+        }
+      },
+      { threshold: 0.2 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
 
   const testimonials = [
     {
@@ -87,6 +99,7 @@ const Testimonials = () => {
                   src={testimonial.image}
                   alt={testimonial.name}
                   className="w-12 h-12 rounded-full object-cover border-2 border-primary/30"
+                  loading="lazy"
                 />
                 <div>
                   <h4 className="font-bold text-white font-heading text-sm">

@@ -1,10 +1,22 @@
 import React, { useState, useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, CheckCircle, Linkedin, Youtube, Github } from 'lucide-react'
+import { Mail, Phone, Send, CheckCircle, Linkedin, Youtube, Github } from 'lucide-react'
 
 const Contact = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const [isInView, setIsInView] = React.useState(false)
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+        }
+      },
+      { threshold: 0.2 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -79,20 +91,10 @@ const Contact = () => {
       {/* Background Effects */}
       <div className="absolute inset-0 mesh-bg opacity-20"></div>
       <div className="container mx-auto px-6 relative z-10">
-                <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.2 }}
-            className="inline-block bg-primary/10 border-2 border-primary/30 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider text-white"
-          >
+        <div className={`text-center mb-16 transition-opacity duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
+          <span className="inline-block bg-primary/10 border-2 border-primary/30 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider text-white">
             📧 Contact
-          </motion.span>
+          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-6 font-heading">
             Discutons de votre{' '}
             <span className="text-gradient">projet</span>
@@ -100,15 +102,11 @@ const Contact = () => {
           <p className="text-base md:text-lg text-gray-300 mt-6 max-w-3xl mx-auto">
             Prêt à donner vie à votre projet ? Contactez-nous dès maintenant
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
+          <div className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-white mb-2">
@@ -174,23 +172,17 @@ const Contact = () => {
               </div>
 
               {isSubmitted && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="bg-green-50 border-2 border-green-500 rounded-lg p-4 flex items-center gap-3"
-                >
+                <div className="bg-green-50 border-2 border-green-500 rounded-lg p-4 flex items-center gap-3 animate-fade-in">
                   <CheckCircle className="text-green-500" size={24} />
                   <p className="text-green-700 font-semibold">
                     Message envoyé avec succès ! Nous vous répondrons rapidement.
                   </p>
-                </motion.div>
+                </div>
               )}
 
-              <motion.button
+              <button
                 type="submit"
                 disabled={isLoading}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
                 className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
@@ -204,25 +196,19 @@ const Contact = () => {
                     <Send size={20} />
                   </>
                 )}
-              </motion.button>
+              </button>
             </form>
-          </motion.div>
+          </div>
 
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="space-y-8"
-          >
+          <div className={`space-y-8 transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
             {/* Contact Cards */}
             <div className="space-y-4">
               {contactInfo.map((info, index) => (
-                <motion.a
+                <a
                   key={index}
                   href={info.link}
-                  whileHover={{ scale: 1.02, x: 5 }}
-                  className="flex items-center gap-4 p-6 bg-gradient-to-r from-blue-50 to-white rounded-xl border-2 border-blue-100 hover:border-primary transition-all"
+                  className="flex items-center gap-4 p-6 bg-gradient-to-r from-blue-50 to-white rounded-xl border-2 border-blue-100 hover:border-primary hover:scale-105 hover:translate-x-2 transition-all"
                 >
                   <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white flex-shrink-0">
                     {info.icon}
@@ -231,7 +217,7 @@ const Contact = () => {
                     <h4 className="font-semibold text-dark font-heading">{info.title}</h4>
                     <p className="text-gray-600">{info.value}</p>
                   </div>
-                </motion.a>
+                </a>
               ))}
             </div>
 
@@ -245,18 +231,16 @@ const Contact = () => {
               </p>
               <div className="flex gap-4">
                 {socialLinks.map((social, index) => (
-                  <motion.a
+                  <a
                     key={index}
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                    className={`w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center text-2xl ${social.color} hover:bg-opacity-100 transition-all`}
+                    className={`w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center text-2xl ${social.color} hover:bg-opacity-100 hover:scale-110 hover:rotate-6 transition-all`}
                     title={social.name}
                   >
                     {social.icon}
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </div>
@@ -269,16 +253,14 @@ const Contact = () => {
               <p className="text-gray-600 mb-4">
                 Obtenez une estimation gratuite en moins de 24h
               </p>
-              <motion.a
+              <a
                 href="#contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 className="btn-secondary inline-block"
               >
                 Demander un devis
-              </motion.a>
+              </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

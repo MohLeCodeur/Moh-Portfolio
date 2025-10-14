@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Heart, ArrowUp, Linkedin, Youtube, Github } from 'lucide-react'
+import { ArrowUp, Linkedin, Youtube, Github } from 'lucide-react'
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false)
@@ -53,12 +52,7 @@ const Footer = () => {
         <div className="py-8 grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
           {/* Brand Column */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-4"
-            >
+            <div className="mb-4">
               <div className="flex items-center space-x-3 mb-2">
                 <img 
                   src="/mohagency.png" 
@@ -72,30 +66,23 @@ const Footer = () => {
               </p>
               <div className="flex gap-3">
                 {socialMedia.map((social, index) => (
-                  <motion.a
+                  <a
                     key={index}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1, y: -3 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="w-9 h-9 bg-white bg-opacity-10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                    className="w-9 h-9 bg-white bg-opacity-10 rounded-lg flex items-center justify-center hover:bg-primary hover:scale-110 hover:-translate-y-1 transition-all"
                     title={social.name}
                   >
                     {social.icon}
-                  </motion.a>
+                  </a>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Services Column */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-          >
+          <div>
             <h3 className="text-base font-bold mb-3 font-heading">Services</h3>
             <ul className="space-y-2">
               {footerLinks.services.map((link, index) => (
@@ -109,15 +96,10 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Company Column */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
+          <div>
             <h3 className="text-base font-bold mb-3 font-heading">Navigation</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link, index) => (
@@ -131,7 +113,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
         </div>
 
@@ -149,22 +131,14 @@ const Footer = () => {
       </div>
 
       {/* Scroll to Top Button */}
-      <AnimatePresence>
-        {showScrollTop && (
-          <motion.button
-            onClick={scrollToTop}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="fixed bottom-8 right-8 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-shadow z-50"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.3 }}
-          >
-            <ArrowUp size={24} />
-          </motion.button>
-        )}
-      </AnimatePresence>
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all z-50 animate-fade-in"
+        >
+          <ArrowUp size={24} />
+        </button>
+      )}
     </footer>
   )
 }
