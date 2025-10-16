@@ -60,17 +60,17 @@ const Services = () => {
   // Animations simplifiées
 
   return (
-    <section id="services" ref={ref} className="py-20 bg-dark relative overflow-hidden">
+    <section id="services" ref={ref} className="py-20 bg-gray-50 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className={`text-center mb-16 transition-opacity duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
-          <span className="inline-block bg-primary/10 border-2 border-primary/30 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider text-white">
-            ⚡ Nos Services
+          <span className="inline-block bg-blue-50 border-2 border-blue-200 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider text-primary">
+            Nos Services
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-6 font-heading">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-6 font-heading">
             Des solutions complètes pour votre{' '}
             <span className="text-gradient">réussite digitale</span>
           </h2>
-          <p className="text-base md:text-lg text-gray-300 mt-6 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-gray-600 mt-6 max-w-3xl mx-auto leading-relaxed">
             De la conception à la mise en ligne, nous vous accompagnons à chaque étape de votre projet digital
           </p>
         </div>
@@ -79,36 +79,33 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`card group relative overflow-hidden bg-darker/60 transition-all duration-500 hover:scale-105 hover:-translate-y-1 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              className={`card group relative overflow-hidden transition-all duration-300 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
               style={{ transitionDelay: `${index * 80}ms` }}
             >
-              {/* Gradient Background on Hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
               <div className="relative z-10">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white mb-5 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all duration-300">
+                <div className="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center text-white mb-4 group-hover:shadow-lg transition-all duration-300">
                   {service.icon}
                 </div>
                 
-                <h3 className="text-xl font-bold text-white mb-3 font-heading group-hover:text-gradient-static transition-all">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 font-heading group-hover:text-gradient-static transition-all">
                   {service.title}
                 </h3>
                 
-                <p className="text-gray-300 mb-5 leading-relaxed text-sm">
+                <p className="text-gray-600 mb-4 leading-relaxed text-sm">
                   {service.description}
                 </p>
                 
-                <ul className="space-y-2 mb-5">
+                <ul className="space-y-2 mb-4">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-gray-400">
+                    <li key={idx} className="flex items-center text-sm text-gray-600">
                       <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></div>
                       {feature}
                     </li>
                   ))}
                 </ul>
 
-                <div className="pt-4 border-t border-white/10">
-                  <a href="#contact" className="text-primary font-semibold hover:text-secondary transition-colors inline-flex items-center text-sm">
+                <div className="pt-4 border-t border-gray-200">
+                  <a href="#contact" className="text-primary font-semibold hover:text-accent transition-colors inline-flex items-center text-sm">
                     En savoir plus
                     <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -122,12 +119,12 @@ const Services = () => {
 
         {/* CTA Section */}
         <div className={`mt-16 text-center transition-all duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
-          <p className="text-lg text-gray-600 mb-6">
+          <p className="text-lg text-gray-700 mb-6">
             Vous ne trouvez pas ce que vous cherchez ?
           </p>
           <a
             href="#contact"
-            className="btn-primary hover:scale-105 transition-transform duration-300"
+            className="btn-primary"
           >
             Parlons de votre projet
           </a>

@@ -99,19 +99,19 @@ const Portfolio = () => {
   // Animations simplifiées
 
   return (
-    <section id="realisations" ref={ref} className="py-20 bg-dark relative overflow-hidden">
+    <section id="realisations" ref={ref} className="py-20 bg-white relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute inset-0 mesh-bg opacity-20"></div>
+      <div className="absolute inset-0 mesh-bg opacity-30"></div>
       <div className="container mx-auto px-6 relative z-10">
         <div className={`text-center mb-16 transition-opacity duration-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
-          <span className="inline-block bg-primary/10 border-2 border-primary/30 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider text-white">
-            🎨 Nos Réalisations
+          <span className="inline-block bg-blue-50 border-2 border-blue-200 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider text-primary">
+            Nos Réalisations
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-6 font-heading">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-6 font-heading">
             Des projets qui{' '}
             <span className="text-gradient">inspirent</span>
           </h2>
-          <p className="text-base md:text-lg text-gray-300 mt-6 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
             Découvrez quelques-uns de nos projets récents et laissez-vous inspirer
           </p>
         </div>
@@ -120,33 +120,32 @@ const Portfolio = () => {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className={`group cursor-pointer transition-all duration-500 hover:-translate-y-3 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              className={`group cursor-pointer transition-all duration-300 hover:-translate-y-1 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
               style={{ transitionDelay: `${index * 80}ms` }}
               onClick={() => setSelectedProject(project)}
             >
-              <div className="relative overflow-hidden rounded-2xl shadow-lg">
+              <div className="relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 bg-white border border-gray-200">
                 {/* Image */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-56 overflow-hidden bg-gray-100">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-80 transition-opacity duration-300`}></div>
                   {/* Overlay Content */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-white rounded-full p-4 scale-0 group-hover:scale-100 transition-transform duration-300">
-                      <ExternalLink className="text-primary" size={24} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-end p-4">
+                    <div className="bg-white rounded-lg p-3">
+                      <ExternalLink className="text-primary" size={20} />
                     </div>
                   </div>
                 </div>
                 {/* Content */}
-                <div className="bg-white p-6">
+                <div className="p-5">
                   <span className="text-xs font-semibold text-primary uppercase tracking-wider">
                     {project.category}
                   </span>
-                  <h3 className="text-xl font-bold text-dark mt-2 mb-3 font-heading">
+                  <h3 className="text-lg font-bold text-gray-900 mt-2 mb-2 font-heading">
                     {project.title}
                   </h3>
                   <p className="text-gray-600 text-sm mb-4 line-clamp-2">
@@ -156,7 +155,7 @@ const Portfolio = () => {
                     {project.tags.slice(0, 3).map((tag, idx) => (
                       <span
                         key={idx}
-                        className="text-xs bg-blue-50 text-primary px-3 py-1 rounded-full"
+                        className="text-xs bg-blue-50 text-primary px-3 py-1.5 rounded-md font-medium border border-blue-100"
                       >
                         {tag}
                       </span>
@@ -170,22 +169,22 @@ const Portfolio = () => {
         {/* Lightbox Modal */}
         {selectedProject && (
           <div
-            className="fixed inset-0 bg-black/95 backdrop-blur-sm z-[100] flex items-center justify-center p-4 overflow-y-auto animate-fade-in"
+            className="fixed inset-0 bg-gray-900/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4 overflow-y-auto animate-fade-in"
             onClick={() => setSelectedProject(null)}
           >
             {/* Bouton de fermeture en haut à droite */}
             <button
               onClick={() => setSelectedProject(null)}
-              className="fixed top-6 right-6 z-[110] bg-white hover:bg-gray-100 rounded-full p-3 shadow-2xl transition-all duration-300 hover:scale-110 hover:rotate-90"
+              className="fixed top-6 right-6 z-[110] bg-white hover:bg-gray-100 rounded-lg p-3 shadow-xl transition-all duration-300 hover:scale-110"
             >
-              <X size={28} className="text-dark" />
+              <X size={24} className="text-gray-900" />
             </button>
             <div
-              className="bg-white rounded-3xl max-w-5xl w-full my-8 overflow-hidden shadow-2xl"
+              className="bg-white rounded-2xl max-w-4xl w-full my-8 overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
                 {/* Image */}
-                <div className="relative w-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center min-h-[300px] max-h-[350px] overflow-hidden">
+                <div className="relative w-full bg-gray-50 flex items-center justify-center min-h-[280px] max-h-[320px] overflow-hidden border-b border-gray-200">
                   <img
                     src={selectedProject.image}
                     alt={selectedProject.title}
@@ -194,39 +193,39 @@ const Portfolio = () => {
                   />
                 </div>
                 {/* Contenu */}
-                <div className="p-8 md:p-12">
+                <div className="p-8 md:p-10">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="text-sm font-bold text-primary uppercase tracking-wider bg-primary/10 px-4 py-2 rounded-full">
+                    <span className="text-sm font-bold text-primary uppercase tracking-wider bg-blue-50 px-4 py-2 rounded-lg border border-blue-200">
                       {selectedProject.category}
                     </span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-dark mb-4 font-heading">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-heading">
                     {selectedProject.title}
                   </h3>
-                  <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                  <p className="text-gray-600 text-base mb-6 leading-relaxed">
                     {selectedProject.description}
                   </p>
-                  <div className="mb-8">
+                  <div className="mb-6">
                     <h4 className="text-sm font-bold text-gray-700 uppercase tracking-wider mb-3">Technologies utilisées</h4>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2">
                       {selectedProject.tags.map((tag, idx) => (
                         <span
                           key={idx}
-                          className="bg-gradient-to-r from-blue-50 to-primary/10 text-primary px-5 py-2.5 rounded-full font-semibold text-sm border border-primary/20"
+                          className="bg-blue-50 text-primary px-4 py-2 rounded-md font-semibold text-sm border border-blue-200"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="flex gap-3">
                     <a
                       href={selectedProject.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-primary flex items-center gap-2"
                     >
-                      <ExternalLink size={20} />
+                      <ExternalLink size={18} />
                       Voir le site
                     </a>
                     <button

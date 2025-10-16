@@ -14,7 +14,11 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug']
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        passes: 2
+      },
+      mangle: {
+        safari10: true
       }
     },
     rollupOptions: {
@@ -23,7 +27,11 @@ export default defineConfig({
           // Sépare les dépendances pour un meilleur caching
           'react-vendor': ['react', 'react-dom'],
           'icons': ['lucide-react']
-        }
+        },
+        // Optimise les noms de fichiers pour le caching
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
       }
     },
     // Optimise la taille des chunks
@@ -35,7 +43,9 @@ export default defineConfig({
     assetsInlineLimit: 4096,
     // Optimisation du code
     target: 'es2015',
-    cssMinify: true
+    cssMinify: true,
+    // Améliore la compression
+    reportCompressedSize: false
   },
   // Optimise les dépendances
   optimizeDeps: {

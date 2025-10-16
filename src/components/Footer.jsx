@@ -38,7 +38,7 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-dark text-white relative overflow-hidden">
+    <footer className="bg-gray-900 text-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -60,7 +60,7 @@ const Footer = () => {
                   className="h-16 md:h-20 w-auto object-contain"
                 />
               </div>
-              <p className="text-gray-400 text-sm leading-snug mb-3">
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
                 Votre partenaire digital pour créer des expériences web exceptionnelles. 
                 Innovation, créativité et performance au service de votre réussite.
               </p>
@@ -71,7 +71,7 @@ const Footer = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 bg-white bg-opacity-10 rounded-lg flex items-center justify-center hover:bg-primary hover:scale-110 hover:-translate-y-1 transition-all"
+                    className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary hover:scale-105 transition-all"
                     title={social.name}
                   >
                     {social.icon}
@@ -83,13 +83,13 @@ const Footer = () => {
 
           {/* Services Column */}
           <div>
-            <h3 className="text-base font-bold mb-3 font-heading">Services</h3>
-            <ul className="space-y-2">
+            <h3 className="text-base font-bold mb-4 font-heading">Services</h3>
+            <ul className="space-y-2.5">
               {footerLinks.services.map((link, index) => (
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-gray-400 text-sm hover:text-primary transition-colors inline-block hover:translate-x-1 duration-200"
+                    className="text-gray-400 text-sm hover:text-white transition-colors inline-block"
                   >
                     {link.name}
                   </a>
@@ -100,13 +100,13 @@ const Footer = () => {
 
           {/* Company Column */}
           <div>
-            <h3 className="text-base font-bold mb-3 font-heading">Navigation</h3>
-            <ul className="space-y-2">
+            <h3 className="text-base font-bold mb-4 font-heading">Navigation</h3>
+            <ul className="space-y-2.5">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-gray-400 text-sm hover:text-primary transition-colors inline-block hover:translate-x-1 duration-200"
+                    className="text-gray-400 text-sm hover:text-white transition-colors inline-block"
                   >
                     {link.name}
                   </a>
@@ -118,13 +118,13 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 py-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-gray-800 py-5">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <p className="text-gray-400 text-sm text-center md:text-left">
-              © 2025 MohAgency — Tous droits réservés.
+              © 2025 MohAgency. Tous droits réservés.
             </p>
             <div className="flex items-center gap-6">
-              <span className="text-gray-400 text-sm">Made with ❤️ by MohAgency</span>
+              <span className="text-gray-500 text-sm">Made with ❤️ by MohAgency</span>
             </div>
           </div>
         </div>
@@ -134,9 +134,9 @@ const Footer = () => {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all z-50 animate-fade-in"
+          className="fixed bottom-8 right-8 w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all z-50 animate-fade-in"
         >
-          <ArrowUp size={24} />
+          <ArrowUp size={22} />
         </button>
       )}
     </footer>

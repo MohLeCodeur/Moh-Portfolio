@@ -7,12 +7,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#0077FF',
-        secondary: '#00D9FF',
-        accent: '#FF3D71',
-        dark: '#0A0E27',
-        darker: '#050816',
-        light: '#ffffff',
+        primary: '#2563EB',
+        secondary: '#1E40AF',
+        accent: '#3B82F6',
+        dark: '#1F2937',
+        darker: '#111827',
+        light: '#F9FAFB',
+        gray: {
+          50: '#F9FAFB',
+          100: '#F3F4F6',
+          200: '#E5E7EB',
+          300: '#D1D5DB',
+          400: '#9CA3AF',
+          500: '#6B7280',
+          600: '#4B5563',
+          700: '#374151',
+          800: '#1F2937',
+          900: '#111827',
+        },
       },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],

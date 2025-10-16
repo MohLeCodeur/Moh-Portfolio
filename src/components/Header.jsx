@@ -37,8 +37,8 @@ const Header = () => {
     <>
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-darker/98 shadow-2xl' : 'bg-darker/95'
-      } backdrop-blur-xl border-b border-white/10 py-2`}
+        isScrolled ? 'bg-white shadow-lg' : 'bg-white/95'
+      } backdrop-blur-xl border-b border-gray-200 py-2`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
@@ -48,7 +48,7 @@ const Header = () => {
           onClick={() => setIsMobileMenuOpen(false)}
         >
           <img 
-            src="/mohagency.png" 
+            src="/mohagencyblack.png" 
             alt="MohAgency Logo" 
             className="h-16 md:h-24 w-auto object-contain"
           />
@@ -60,10 +60,10 @@ const Header = () => {
             <a
               key={index}
               href={item.href}
-              className="font-medium text-white hover:text-gradient-static transition-all relative group"
+              className="font-medium text-gray-700 hover:text-primary transition-all relative group"
             >
               {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
             </a>
           ))}
         </nav>
@@ -71,15 +71,15 @@ const Header = () => {
         {/* CTA Button */}
         <a
           href="#contact"
-          className="hidden md:block btn-primary hover:scale-105 transition-transform"
+          className="hidden md:block btn-primary"
         >
-          🚀 Démarrer maintenant
+          Démarrer maintenant
         </a>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-white glass p-3 rounded-xl z-[60] relative hover:bg-primary/20 transition-all active:scale-90"
+          className="md:hidden text-gray-700 bg-gray-100 p-3 rounded-lg z-[60] relative hover:bg-gray-200 transition-all active:scale-90"
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -92,18 +92,18 @@ const Header = () => {
         <>
           {/* Backdrop */}
           <div
-            className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] animate-fade-in"
+            className="md:hidden fixed inset-0 bg-gray-900/50 backdrop-blur-sm z-[55] animate-fade-in"
             onClick={() => setIsMobileMenuOpen(false)}
           />
           
           {/* Menu Panel */}
-          <div className="md:hidden fixed top-0 right-0 bottom-0 w-[280px] bg-darker border-l border-white/10 z-[60] shadow-2xl animate-slide-in-right">
+          <div className="md:hidden fixed top-0 right-0 bottom-0 w-[280px] bg-white border-l border-gray-200 z-[60] shadow-2xl animate-slide-in-right">
               {/* Header with Close Button */}
-              <div className="flex items-center justify-between p-6 border-b border-white/10">
-                <span className="text-white font-bold text-lg">Menu</span>
+              <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                <span className="text-gray-900 font-bold text-lg">Menu</span>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-white hover:bg-white/10 p-2 rounded-lg transition-colors"
+                  className="text-gray-700 hover:bg-gray-100 p-2 rounded-lg transition-colors"
                   aria-label="Close menu"
                 >
                   <X size={24} />
@@ -117,7 +117,7 @@ const Header = () => {
                     key={index}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-white text-base font-medium py-3 px-4 rounded-lg hover:bg-white/5 active:bg-white/10 transition-all border-l-2 border-transparent hover:border-primary"
+                    className="text-gray-700 text-base font-medium py-3 px-4 rounded-lg hover:bg-gray-50 active:bg-gray-100 transition-all border-l-2 border-transparent hover:border-primary"
                   >
                     {item.name}
                   </a>
@@ -130,14 +130,14 @@ const Header = () => {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="btn-primary text-center text-sm px-6 py-3 w-full block"
                   >
-                    🚀 Démarrer
+                    Démarrer
                   </a>
                 </div>
               </nav>
               
               {/* Footer - Social Links (optional) */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-white/10">
-                <p className="text-gray-400 text-xs text-center">
+              <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200">
+                <p className="text-gray-500 text-xs text-center">
                   © 2025 MohAgency
                 </p>
               </div>
