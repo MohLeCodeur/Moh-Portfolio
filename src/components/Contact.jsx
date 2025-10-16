@@ -69,7 +69,7 @@ const Contact = () => {
     {
       name: 'LinkedIn',
       icon: <Linkedin size={24} />,
-      link: 'https://linkedin.com/in/mohlecodeur',
+      link: 'https://www.linkedin.com/in/mohamed-coulibaly-tec/',
       color: 'hover:bg-blue-600'
     },
     {
@@ -151,7 +151,7 @@ const Contact = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all placeholder-gray-400"
-                  placeholder="+223 00 00 00 00"
+                  placeholder="+00 00 00 00 00"
                 />
               </div>
 

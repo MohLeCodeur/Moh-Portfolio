@@ -32,7 +32,7 @@ const Footer = () => {
   }
 
   const socialMedia = [
-    { name: 'LinkedIn', icon: <Linkedin size={20} />, href: 'https://linkedin.com/in/mohlecodeur' },
+    { name: 'LinkedIn', icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/in/mohamed-coulibaly-tec/' },
     { name: 'YouTube', icon: <Youtube size={20} />, href: 'https://youtube.com/@mohlecodeur' },
     { name: 'GitHub', icon: <Github size={20} />, href: 'https://github.com/mohlecodeur' }
   ]
