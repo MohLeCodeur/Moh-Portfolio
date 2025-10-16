@@ -34,53 +34,55 @@ const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      title: 'E-commerce Luxe',
+      title: 'E-commerce Afrique – Paiement Mobile',
       category: 'E-commerce',
-      description: 'Boutique en ligne haut de gamme avec intégration IA pour recommandations personnalisées',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-      tags: ['React', 'Node.js', 'IA', 'Stripe'],
+      description: "Site e-commerce moderne permettant l'achat en ligne avec paiement sécurisé, adapté au marché africain. Accepte Mobile Money (via Moneroo), Stripe et cartes bancaires. Développé avec WordPress et WooCommerce pour une gestion simplifiée.",
+      image: 'img/ecom.png',
+      tags: ['WordPress', 'WooCommerce', 'Mobile Money', 'Moneroo', 'Stripe'],
       color: 'from-purple-500 to-pink-500',
-      url: '#'
+      url: 'https://www.academyafrique.com/'
     },
     {
       id: 2,
-      title: 'Site Vitrine Tech',
-      category: 'Vitrine',
-      description: 'Site corporate moderne pour startup technologique avec animations avancées',
-      image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop',
-      tags: ['Next.js', 'Tailwind', 'Framer Motion'],
+      title: 'Gestionnaire de Relations',
+      category: 'Application',
+      description:
+        "Gérez vos relations personnelles et professionnelles avec sagesse et intention. Ajoutez vos amis ou proches, notez chaque interaction, fixez-vous des objectifs relationnels inspirés du livre 'Comment se faire des amis' de Dale Carnegie, et suivez vos progrès pour des relations épanouies. Application moderne, rapide et sécurisée, développée avec Node.js, Supabase et React.js.",
+      image: 'img/relation.png',
+      tags: ['React.js', 'Node.js', 'Supabase'],
       color: 'from-blue-500 to-cyan-500',
-      url: '#'
+      url: 'https://relation.mohlecodeur.com/'
     },
     {
       id: 3,
-      title: 'Plateforme SaaS',
+      title: 'Mybus – Réservation & Tracking Bus',
       category: 'Application',
-      description: 'Application web avec dashboard analytique et chatbot IA intégré',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-      tags: ['React', 'Python', 'OpenAI', 'PostgreSQL'],
+      description:
+        "Mybus est une application innovante permettant de réserver et d’acheter vos billets de voyage en toute simplicité, de suivre votre bus et vos colis en temps réel, et de gérer vos déplacements en toute sérénité. Plateforme moderne, rapide et sécurisée, conçue avec React.js, Node.js, MongoDB Atlas, Render et Vercel.",
+      image: 'img/mybus.png',
+      tags: ['React.js', 'Node.js', 'MongoDB Atlas', 'Render', 'Vercel'],
       color: 'from-green-500 to-emerald-500',
-      url: '#'
+      url: 'https://www.codeurmali.com/'
     },
     {
       id: 4,
       title: 'Portfolio Créatif',
       category: 'Portfolio',
       description: 'Portfolio interactif pour artiste avec galerie immersive et animations 3D',
-      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop',
+      image: 'img/portfolio.png',
       tags: ['Three.js', 'React', 'GSAP'],
       color: 'from-orange-500 to-red-500',
-      url: '#'
+      url: 'https://artisan.mohlecodeur.com/'
     },
     {
       id: 5,
       title: 'Restaurant Digital',
       category: 'E-commerce',
       description: 'Site de restaurant avec commande en ligne et système de réservation intelligent',
-      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop',
+      image: 'img/restau.png',
       tags: ['Vue.js', 'Firebase', 'Stripe'],
       color: 'from-yellow-500 to-orange-500',
-      url: '#'
+      url: 'https://restau.mohlecodeur.com'
     },
     {
       id: 6,
@@ -132,7 +134,6 @@ const Portfolio = () => {
                     loading="lazy"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-80 transition-opacity duration-300`}></div>
-                  
                   {/* Overlay Content */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-white rounded-full p-4 scale-0 group-hover:scale-100 transition-transform duration-300">
@@ -140,7 +141,6 @@ const Portfolio = () => {
                     </div>
                   </div>
                 </div>
-
                 {/* Content */}
                 <div className="bg-white p-6">
                   <span className="text-xs font-semibold text-primary uppercase tracking-wider">
@@ -167,7 +167,6 @@ const Portfolio = () => {
             </div>
           ))}
         </div>
-
         {/* Lightbox Modal */}
         {selectedProject && (
           <div
@@ -181,7 +180,6 @@ const Portfolio = () => {
             >
               <X size={28} className="text-dark" />
             </button>
-
             <div
               className="bg-white rounded-3xl max-w-5xl w-full my-8 overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
@@ -195,7 +193,6 @@ const Portfolio = () => {
                     loading="lazy"
                   />
                 </div>
-
                 {/* Contenu */}
                 <div className="p-8 md:p-12">
                   <div className="flex items-center gap-3 mb-4">
@@ -203,15 +200,12 @@ const Portfolio = () => {
                       {selectedProject.category}
                     </span>
                   </div>
-                  
                   <h3 className="text-3xl md:text-4xl font-bold text-dark mb-4 font-heading">
                     {selectedProject.title}
                   </h3>
-                  
                   <p className="text-gray-600 text-lg mb-8 leading-relaxed">
                     {selectedProject.description}
                   </p>
-                  
                   <div className="mb-8">
                     <h4 className="text-sm font-bold text-gray-700 uppercase tracking-wider mb-3">Technologies utilisées</h4>
                     <div className="flex flex-wrap gap-3">
@@ -225,7 +219,6 @@ const Portfolio = () => {
                       ))}
                     </div>
                   </div>
-                  
                   <div className="flex gap-4">
                     <a
                       href={selectedProject.url}
